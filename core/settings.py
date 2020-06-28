@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+	'chart',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +77,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'STORAGE_ENGINE': 'InnoDB',
+
+        # CHANGE TO YOUR CONFIG
+        'NAME': 'teste',
+        'USER': 'root',
+        'PASSWORD': '',
+		'PORT': '3308',
+        # CHANGE TO YOUR CONFIG
+
+        'OPTIONS': {
+			# 'init_command': 'SET default_storage_engine=InnoDB',
+            'isolation_level': 'read committed',
+            'sql_mode': 'STRICT_TRANS_TABLES',
+        }
     }
 }
 
