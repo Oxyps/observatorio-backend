@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+	'rest_framework',
+
 	'chart',
 ]
 
@@ -81,7 +83,7 @@ DATABASES = {
         'STORAGE_ENGINE': 'InnoDB',
 
         # CHANGE TO YOUR CONFIG
-        'NAME': 'teste',
+        'NAME': 'observatorio',
         'USER': 'root',
         'PASSWORD': '',
 		'PORT': '3308',
