@@ -23,13 +23,6 @@ class GranularitySerializer(serializers.ModelSerializer):
         model = Granularity
         fields = '__all__'
 
-class DataTypeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-
-        model = DataType
-        fields = '__all__'
-
 class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
