@@ -16,7 +16,7 @@ The data analysed comes from a huge CSV file provided by [Brazilian Open Data Po
   - [Django](docs.djangoproject.com/en/3.0/)
 
 ## Database Structure 🧱
-![image-model-v2](https://user-images.githubusercontent.com/29782248/85941549-f8472100-b8f9-11ea-82fc-b899b03f3e75.png)
+![image-model-v2](https://user-images.githubusercontent.com/29782248/86071500-c77bfe80-ba55-11ea-83ab-9a866de168e1.png)
 
 ## First Steps 🧭
 

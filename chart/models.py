@@ -8,7 +8,7 @@ class Granularity(models.Model):
 
 class ReferencePeriod(models.Model):
 	def __str__(self):
-		return f'in_date: {self.in_date}, until_date: {self.until_date}'
+		return f'{self.in_date} / {self.until_date}'
 
 	in_date = models.DateField()
 	until_date = models.DateField()
@@ -26,28 +26,30 @@ class Location(models.Model):
 	geo_longitude = models.FloatField()
 
 class DataType(models.Model):
+	def __str__(self):
+		return self.datatype
+
 	datatype = models.CharField(max_length=20)
 
 class Information(models.Model):
 	def __str__(self):
-		return self.nickname
+		return f'{self.id_datatype.datatype} - {self.nickname}'
 
 	nickname = models.CharField(max_length=15)
 	shortname = models.CharField(max_length=100)
 	longname = models.CharField(max_length=256)
 	definition = models.TextField(max_length=2048)
-	id_datatype = models.OneToOneField('DataType', on_delete=models.DO_NOTHING, unique=True, db_column='id_datatype')
+	id_datatype = models.ForeignKey('DataType', on_delete=models.DO_NOTHING, db_column='id_datatype')
 
 class Data(models.Model):
 	class Meta:
-		unique_together = (('id_information', 'id_information_datatype', 'id_reference_period', 'id_location', 'id_granularity'),)
+		unique_together = (('id_information', 'id_referenceperiod', 'id_location', 'id_granularity'),)
 
 	def __str__(self):
-		return self.data
+		return f'{self.id_information} - {self.id_location} - {self.id_referenceperiod} - {self.id_granularity} - {self.data}'
 
 	id_information = models.ForeignKey('Information', on_delete=models.DO_NOTHING, db_column='id_information')
-	id_information_datatype = models.ForeignKey('Information', on_delete=models.DO_NOTHING, to_field='id_datatype', related_name='information_datatype', db_column='id_information_datatype')
-	id_reference_period = models.ForeignKey('ReferencePeriod', on_delete=models.DO_NOTHING, db_column='id_reference_period')
+	id_referenceperiod = models.ForeignKey('ReferencePeriod', on_delete=models.DO_NOTHING, db_column='id_referenceperiod')
 	id_location = models.ForeignKey('Location', on_delete=models.DO_NOTHING, db_column='id_location')
 	id_granularity = models.ForeignKey('Granularity', on_delete=models.DO_NOTHING, db_column='id_granularity')
 	data = models.FloatField()
