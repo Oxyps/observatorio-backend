@@ -11,9 +11,10 @@ The data analysed comes from a huge CSV file provided by [Brazilian Open Data Po
 
 ## Technologies 🧰
 
-  - [Python](docs.python.org/3/)
-  - [MySql](dev.mysql.com/doc/)
-  - [Django](docs.djangoproject.com/en/3.0/)
+  - [Python](https://docs.python.org/3/)
+  - [MySql](https://dev.mysql.com/doc/)
+  - [Django Framework](https://docs.djangoproject.com/en/3.0/topics/serialization/)
+  - [Django Rest Framework](https://www.django-rest-framework.org)
 
 ## Database Structure 🧱
 ![image-model-v2](https://user-images.githubusercontent.com/29782248/86071500-c77bfe80-ba55-11ea-83ab-9a866de168e1.png)
