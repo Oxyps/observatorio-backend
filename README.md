@@ -49,7 +49,7 @@ The data analysed comes from a huge CSV file provided by [Brazilian Open Data Po
 > pipenv install --dev
 ```
 
-- Alter databases config to your `NAME`, `USER` and `PASSWORD` in settings.py, like:
+- Alter databases config to your `NAME`, `USER` and `PASSWORD` in `core/settings.py`, like:
 ``` python
 NAME = 'observatorio'
 USER = 'root'
@@ -69,4 +69,23 @@ CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_
 - Run server:
 ``` shell
 > py manage.py runserver
+```
+
+## URLS
+
+**Data**
+
+- All data:
+``` browser
+localhost:8000/chart/data
+```
+
+- Filtered data:
+```
+localhost:8000/chart/data/?information_nickname=&location_name=&granularity=&in_date_gt=&until_date_lte=
+```
+
+- Dates format:
+```
+YYYY-MM-DD
 ```
