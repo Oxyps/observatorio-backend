@@ -3,26 +3,32 @@ from rest_framework import serializers
 from .models import Data, Information, Granularity, DataType, Location, ReferencePeriod
 
 class DataSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Data
-        fields = '__all__'
+	class Meta:
+		model = Data
+		fields = ['data', 'until_date']
+
+	# extra field to serialize until_date
+	def get_until_date(self, obj):
+		return obj.id_referenceperiod.until_date
+
+	until_date = serializers.SerializerMethodField()
 
 class InformationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Information
-        fields = '__all__'
+	class Meta:
+		model = Information
+		fields = '__all__'
 
 class GranularitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Granularity
-        fields = '__all__'
+	class Meta:
+		model = Granularity
+		fields = '__all__'
 
 class LocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Location
-        fields = '__all__'
+	class Meta:
+		model = Location
+		fields = '__all__'
 
 class ReferencePeriodSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ReferencePeriod
-        fields = '__all__'
+	class Meta:
+		model = ReferencePeriod
+		fields = '__all__'
