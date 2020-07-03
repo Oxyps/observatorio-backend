@@ -3,7 +3,7 @@
 ## Description 📜
 
 This project is an implementation of my undergraduate thesis.
-Which consists in visualize a large number of data in an easier way, through graphs.
+Which consists in visualize a large number of data in an easier way, through charts.
 
 ## Open Data 🔓
 
@@ -71,10 +71,9 @@ CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_
 > py manage.py runserver
 ```
 
-## URLS
+## URLS 📁
 
 **Data**
-
 - All data:
 ``` browser
 localhost:8000/chart/data
