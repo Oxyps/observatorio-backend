@@ -13,7 +13,7 @@ for data in source:
 		'data': data['data']
 	}
 
-	key = f"{data['location_name']}_{data['location_type']}"
+	key = f"{data['location_type']}_{data['location_name']}"
 	if key in new_source:
 		new_source[key].append(locations_data)
 	else:
@@ -21,4 +21,4 @@ for data in source:
 
 for key in new_source:
 	with open(path.abspath(f'scripts/new_data/{key}.json'), 'w') as file:
-		file.write(json.dumps(new_source[key], indent=2))
+		json.dump(new_source[key], file, indent=2)
