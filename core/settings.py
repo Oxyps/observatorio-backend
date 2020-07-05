@@ -97,15 +97,17 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'STORAGE_ENGINE': 'InnoDB',
 
-        # CHANGE TO YOUR CONFIG
+		# CHANGE TO YOUR CONFIG
+		'HOST': '127.0.0.1',
+		'PORT': '3308',
         'NAME': 'observatorio',
         'USER': 'root',
         'PASSWORD': '',
-		'PORT': '3308',
         # CHANGE TO YOUR CONFIG
 
         'OPTIONS': {
 			# 'init_command': 'SET default_storage_engine=InnoDB',
+			# 'read_default_file': os.path.join(BASE_DIR, 'database', 'db.conf'),
             'isolation_level': 'read committed',
             'sql_mode': 'STRICT_TRANS_TABLES',
         }
