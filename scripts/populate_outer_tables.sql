@@ -1,23 +1,23 @@
 USE observatorio;
 
-INSERT INTO `chart_datatype`
+INSERT INTO `datatype`
 	(datatype) values ('float');
 
-INSERT INTO `chart_information`
+INSERT INTO `information`
 	(`id_datatype`, `nickname`, `shortname`, `longname`, `definition`) VALUES
 	((SELECT id from chart_datatype where datatype = 'float'),
 	'FUNDEB',
 	'Fundo de Manutenção e Desenvolvimento da Educação Básica',
 	'Fundo Governamental de Manutenção e Desenvolvimento da Educação Básica Pública',
-	'Conjunto de fundos contábeis formado por recursos para promover o 
+	'Conjunto de fundos contábeis formado por recursos para promover o
 	financiamento da educação básica pública');
 
-INSERT INTO `chart_granularity`
+INSERT INTO `granularity`
 	(granularity) VALUES
     ('bimonthly'), ('quarterly'), ('half-yearly'), ('yearly');
 
 /*!40000 ALTER TABLE `chart_location` DISABLE KEYS */;
-INSERT INTO `chart_location` (`id_ibge`,`name`,`location_type`,`geo_latitude`,`geo_longitude`,`id_ibge_memberof`,`nickname`) VALUES
+INSERT INTO `location` (`id_ibge`,`name`,`location_type`,`geo_latitude`,`geo_longitude`,`id_ibge_memberof`,`nickname`) VALUES
  (0,'Brasil','País',-15.79408736,-47.88790548,0,''),
  (1,'Norte','Região',-4.726974372569272,-58.37025757357035,0,''),
  (2,'Nordeste','Região',-7.763937948976276,-38.98959858533018,0,''),
