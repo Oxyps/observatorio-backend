@@ -2,18 +2,8 @@ from rest_framework import generics
 from django_filters import rest_framework
 from rest_framework import filters
 
-from .models import Data, Information, Granularity, DataType, Location, ReferencePeriod
-from .serializers import DataSerializer, InformationSerializer, GranularitySerializer, LocationSerializer, ReferencePeriodSerializer
-
-from .filters import ReferencePeriodFilter, DataFilter
-
-class DataView(generics.ListAPIView):
-	queryset = Data.objects.all()
-
-	serializer_class = DataSerializer
-
-	filter_backends = (rest_framework.DjangoFilterBackend,)
-	filter_class = DataFilter
+from .models import Information, Location, Granularity
+from .serializers import InformationSerializer, LocationSerializer, GranularitySerializer
 
 class InformationView(generics.ListAPIView):
 	queryset = Information.objects.all()
@@ -32,11 +22,3 @@ class GranularityView(generics.ListAPIView):
 
 	filter_backends = (rest_framework.DjangoFilterBackend,)
 	filter_fields = '__all__'
-
-class ReferencePeriodView(generics.ListAPIView):
-	queryset = ReferencePeriod.objects.all()
-
-	serializer_class = ReferencePeriodSerializer
-
-	filter_backends = (rest_framework.DjangoFilterBackend,)
-	filter_class = ReferencePeriodFilter

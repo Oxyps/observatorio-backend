@@ -15,12 +15,10 @@ Including another URLconf
 """
 from django.urls import path
 
-from .views import DataView, InformationView, GranularityView, LocationView, ReferencePeriodView
+from .views import InformationView, LocationView, GranularityView
 
 urlpatterns = [
-    path('data/', DataView.as_view(), name='data-list'),
     path('information/', InformationView.as_view(), name='information-list'),
     path('location/', LocationView.as_view(), name='location-list'),
     path('granularity/', GranularityView.as_view(), name='granularity-list'),
-    path('referenceperiod/', ReferencePeriodView.as_view(), name='referenceperiod-list'),
 ]
