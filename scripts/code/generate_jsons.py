@@ -1,19 +1,21 @@
 from os import path
 import json
 
-with open(path.abspath('scripts/data_source/chart_data.json')) as file:
-	source = json.load(file)
+with open(path.abspath('scripts/data_source/data.json')) as file:
+	json_source = json.load(file)
 
 new_source = {}
-for data in source:
+for json_data in json_source:
 	locations_data = {
-		'granularity': data['granularity'],
-		'until_date': data['until_date'],
-		'in_date': data['in_date'],
-		'data': data['data']
+		'information_nickname': json_data['information_nickname'],
+		'information_datatype': json_data['information_datatype'],
+		'granularity': json_data['granularity'],
+		'until_date': json_data['until_date'],
+		'in_date': json_data['in_date'],
+		'data': json_data['data']
 	}
 
-	key = f"{data['location_type']}_{data['location_name']}"
+	key = f"{json_data['location_type']}_{json_data['location_name']}"
 	if key in new_source:
 		new_source[key].append(locations_data)
 	else:
