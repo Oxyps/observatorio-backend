@@ -8,5 +8,5 @@ venv
 
 database
 
-scripts/data_source
+scripts/data_source/data.json
 scripts/new_data
