@@ -7,3 +7,6 @@ env
 venv
 
 database
+
+scripts/data_source/data.json
+scripts/new_data

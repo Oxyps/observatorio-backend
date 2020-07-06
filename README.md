@@ -1,16 +1,15 @@
 # Observatório 👁‍🗨🎲
 
-## Description 📜
+## Status: *in development* ⏳
 
+## Description 📜
 This project is an implementation of my undergraduate thesis.
 Which consists in visualize a large number of data in an easier way, through charts.
 
 ## Open Data 🔓
-
 The data analysed comes from a huge CSV file provided by [Brazilian Open Data Portal](http://www.dados.gov.br). This data went through an ETL proccess, by [Leonardo Gabriel Lubczyk](https://github.com/kyrosx/observatorio_etl), to be structured in the database.
 
 ## Technologies 🧰
-
   - [Python](https://docs.python.org/3/)
   - [MySql](https://dev.mysql.com/doc/)
   - [Django Framework](https://docs.djangoproject.com/en/3.0/topics/serialization/)
@@ -22,7 +21,6 @@ The data analysed comes from a huge CSV file provided by [Brazilian Open Data Po
 ## First Steps 🧭
 
 **Windows**
-
 - Make sure you already have installed pip:
 ``` shell
 > pip --version
@@ -58,7 +56,7 @@ PASSWORD = ''
 
 - Create the database `NAME` in your server:
 ``` sql
-CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_as_ci;
+CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4;
 ```
 
 - Run migrations:
@@ -66,7 +64,19 @@ CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_
 > py manage.py migrate
 ```
 
-- Run server:
+- Run `scripts/populate_outer_tables.sql` in DB to populate tables around `chart_data` table; It can easily be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/); Make sure to assegurate the UTF-8 unicode;
+
+- **in development:**
+Run `scripts/code/generate_insert_script.py` to generate `scripts/populate_data_table.sql`;
+
+- **in development:**
+Run `scripts/populate_data_table.sql` in DB to populate `Data` table;
+
+- With DB populated, a JSON file must be extracted from `Data` table using `scripts/data_source/extraction_query.sql` extraction query. This file must be named `data.json` and be in the same script's directory. This procedure can also be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/);
+
+- Then, with all data in `scripts/data_source/data.json` created, run `scripts/code/generate_jsons.py` to generate the 6298 location JSON files;
+
+- Now the API is ready to be consumed; run server:
 ``` shell
 > py manage.py runserver
 ```
@@ -74,17 +84,20 @@ CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_
 ## URLS 📁
 
 **Data**
-- All data:
-``` browser
-localhost:8000/chart/data
+- Fetch informations:
+```
+localhost:8000/chart/information
+```
+
+- Fetch granularities:
+```
+localhost:8000/chart/granularity
 ```
 
 - Filtered data:
 ```
-localhost:8000/chart/data/?information_nickname=&location_name=&granularity=&in_date_gt=&until_date_lte=
+localhost:8000/chart/data/?information_nickname=&location_name=&location_type=&granularity=&in_date_gt=&until_date_lte=
 ```
 
-- Dates format:
-```
-YYYY-MM-DD
-```
+**Util**
+- Dates format: `yyyy-mm-dd`
