@@ -57,6 +57,6 @@ def search_location_data_injson(information_param, location_name_param, location
 	]
 
 	if len(response_data) == 0:
-		response['dataset']['label'] = ''
+		response['dataset'][0]['label'] = ''
 
 	return response
