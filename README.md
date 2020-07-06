@@ -64,15 +64,17 @@ CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4;
 > py manage.py migrate
 ```
 
-- Run `scripts/populate_outer_tables.sql` in DB to populate tables around `chart_data` table; It can easily be done by [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/); Make sure to assegurate the UTF-8 unicode;
+- Run `scripts/populate_outer_tables.sql` in DB to populate tables around `chart_data` table; It can easily be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/); Make sure to assegurate the UTF-8 unicode;
 
 - **in development:**
 Run `scripts/code/generate_insert_script.py` to generate `scripts/populate_data_table.sql`;
 
 - **in development:**
-Run `scripts/populate_data_table.sql` in DB to populate chart_data table;
+Run `scripts/populate_data_table.sql` in DB to populate `Data` table;
 
-- With database populated, run `scripts/code/generate_jsons.py` to generate the 6298 location JSON files;
+- With DB populated, a JSON file must be extracted from `Data` table using `scripts/data_source/extraction_query.sql` extraction query. This file must be named `data.json` and be in the same script's directory. This procedure can also be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/);
+
+- Then, with all data in `scripts/data_source/data.json` created, run `scripts/code/generate_jsons.py` to generate the 6298 location JSON files;
 
 - Now the API is ready to be consumed; run server:
 ``` shell
