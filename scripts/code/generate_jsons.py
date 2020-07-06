@@ -10,8 +10,8 @@ for json_data in json_source:
 		'information_nickname': json_data['information_nickname'],
 		'information_datatype': json_data['information_datatype'],
 		'granularity': json_data['granularity'],
-		'until_date': json_data['until_date'],
 		'in_date': json_data['in_date'],
+		'until_date': json_data['until_date'],
 		'data': json_data['data']
 	}
 
