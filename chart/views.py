@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import Information, Location, Granularity
-from .serializers import InformationSerializer, LocationSerializer, GranularitySerializer
+from .serializers import InformationSerializer, GranularitySerializer
 from .search_injsons import search_location_data_injson
 
 class SearchDataView(APIView):
@@ -45,9 +45,21 @@ class InformationView(generics.ListAPIView):
 	serializer_class = InformationSerializer
 
 class LocationView(generics.ListAPIView):
-	queryset = Location.objects.all()
+	def get(self, request, format=None):
+		locations = Location.objects.all()
 
-	serializer_class = LocationSerializer
+		response = {}
+
+		for location in locations:
+			if(not location.location_type in response):
+				response[location.location_type] = []
+
+			response[location.location_type].append({
+				'id': location.id_ibge,
+				'name': location.name
+			})
+
+		return Response(response)
 
 class GranularityView(generics.ListAPIView):
 	queryset = Granularity.objects.all()

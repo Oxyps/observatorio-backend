@@ -49,7 +49,7 @@ def search_location_data_injson(information_param, location_name_param, location
 		response_until_dates.append(until_date_json.__str__())
 
 	response['until_dates'] = response_until_dates
-	response['dataset'] = [
+	response['datasets'] = [
 		{
 			'label': f'{information_param} - {location_type_param} {location_name_param}, período {pt_br(granularity_param)}',
 			'data': response_data
@@ -57,6 +57,6 @@ def search_location_data_injson(information_param, location_name_param, location
 	]
 
 	if len(response_data) == 0:
-		response['dataset'][0]['label'] = ''
+		response['datasets'][0]['label'] = ''
 
 	return response

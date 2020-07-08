@@ -1,15 +1,10 @@
 from rest_framework import serializers
 
-from .models import Information, Location, Granularity
+from .models import Information, Granularity
 
 class InformationSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Information
-		fields = '__all__'
-
-class LocationSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Location
 		fields = '__all__'
 
 class GranularitySerializer(serializers.ModelSerializer):
