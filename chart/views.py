@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import Information, Location, Granularity
-from .serializers import InformationSerializer, GranularitySerializer
+from .serializers import InformationSerializer
 from .search_injsons import search_location_data_injson
 
 class SearchDataView(APIView):
@@ -46,11 +46,11 @@ class InformationView(generics.ListAPIView):
 
 class LocationView(generics.ListAPIView):
 	def get(self, request, format=None):
-		locations = Location.objects.all()
+		queryset = Location.objects.all()
 
 		response = {}
 
-		for location in locations:
+		for location in queryset:
 			if(not location.location_type in response):
 				response[location.location_type] = []
 
@@ -62,6 +62,25 @@ class LocationView(generics.ListAPIView):
 		return Response(response)
 
 class GranularityView(generics.ListAPIView):
-	queryset = Granularity.objects.all()
+	def get(self, request, format=None):
+		queryset = Granularity.objects.all()
 
-	serializer_class = GranularitySerializer
+		response = []
+
+		for granularity in queryset:
+			pt_br = ''
+			if granularity.granularity == 'daily': pt_br = 'diário'
+			elif granularity.granularity == 'weekly': pt_br = 'semanal'
+			elif granularity.granularity == 'monthly': pt_br = 'mensal'
+			elif granularity.granularity == 'bimonthly': pt_br = 'bimestral'
+			elif granularity.granularity == 'quarterly': pt_br = 'trimestral'
+			elif granularity.granularity == 'half-yearly': pt_br = 'semestral'
+			elif granularity.granularity == 'yearly': pt_br = 'anual'
+
+			response.append({
+				'id': granularity.id,
+				'granularity': granularity.granularity,
+				'granularidade': pt_br
+			})
+		print(response)
+		return Response({"data": response})
