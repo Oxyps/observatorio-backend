@@ -67,36 +67,49 @@ CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4;
 - Run `scripts/populate_outer_tables.sql` in DB to populate tables around `chart_data` table; It can easily be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/); Make sure to assegurate the UTF-8 unicode;
 
 - **in development:**
-Run `scripts/code/generate_insert_script.py` to generate `scripts/populate_data_table.sql`;
+Run `util/scripts/generate_insert_script.py` to generate `util/scripts/populate_data_table.sql`;
 
 - **in development:**
-Run `scripts/populate_data_table.sql` in DB to populate `Data` table;
+Run `util/scripts/populate_data_table.sql` in DB to populate `Data` table;
 
-- With DB populated, a JSON file must be extracted from `Data` table using `scripts/data_source/extraction_query.sql` extraction query. This file must be named `data.json` and be in the same script's directory. This procedure can also be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/);
+- With DB populated, a JSON file must be extracted from `Data` table using `util/scripts/extraction_query.sql` extraction query. This file must be named `util/data_source/data.json` and be in the same script's directory. That procedure can also be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/);
 
-- Then, with all data in `scripts/data_source/data.json` created, run `scripts/code/generate_jsons.py` to generate the 6298 location JSON files;
-
-- Now the API is ready to be consumed; run server:
+- Run server:
 ``` shell
 > py manage.py runserver
 ```
+
+- Request to `localhost:8000/chart/generate-json-locations` to generate the locations JSON files which will be used for searches; This route should be used only once;
+
+- Now API is ready to be consumed.
 
 ## URLS 📁
 
 **Data**
 - Fetch informations:
 ```
-localhost:8000/chart/information
+localhost:8000/chart/information/
 ```
 
 - Fetch granularities:
 ```
-localhost:8000/chart/granularity
+localhost:8000/chart/granularity/
+```
+
+- Fetch locations:
+```
+localhost:8000/chart/location/
 ```
 
 - Filtered data:
 ```
-localhost:8000/chart/data/?information_nickname=&location_name=&location_type=&granularity=&in_date_gt=&until_date_lte=
+localhost:8000/chart/search-data/?information_nickname=&location_name=&location_type=&location_state=&granularity=&in_date_gt=&until_date_lte=/
+```
+
+- **This route later will need some kind of authentication.** Generate locations JSON files:
+
+```
+localhost:8000/chart/generate-json-locations/
 ```
 
 **Util**
