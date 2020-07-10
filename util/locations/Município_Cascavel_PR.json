@@ -1,0 +1,34 @@
+[
+  {
+    "information_nickname": "FUNDEB",
+    "information_datatype": "float",
+    "granularity": "bimonthly",
+    "in_date": "2018-01-02",
+    "until_date": "2018-03-02",
+    "data": "4.5"
+  },
+  {
+    "information_nickname": "FUNDEB",
+    "information_datatype": "float",
+    "granularity": "bimonthly",
+    "in_date": "2018-03-02",
+    "until_date": "2018-05-02",
+    "data": "5"
+  },
+  {
+    "information_nickname": "FUNDEB",
+    "information_datatype": "float",
+    "granularity": "bimonthly",
+    "in_date": "2018-05-02",
+    "until_date": "2018-07-02",
+    "data": "4.3"
+  },
+  {
+    "information_nickname": "FUNDEB",
+    "information_datatype": "float",
+    "granularity": "bimonthly",
+    "in_date": "2018-07-02",
+    "until_date": "2018-09-02",
+    "data": "2"
+  }
+]
