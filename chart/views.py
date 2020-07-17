@@ -41,7 +41,7 @@ class SearchDataView(APIView):
 					'detail': f'check in_date={{{in_date}}} and until_date={{{until_date}}} syntax. format: yyyy-mm-dd. {{y}}, {{m}} and {{d}} must be 10 base numbers.'
 				}, status=HTTP_404_NOT_FOUND)
 		return Response({
-			'detail': 'must have all query params: {information_nickname}, {location_name}, {location_type}, {in_date_gt}, {until_date_lte}, {granularity}.'
+			'detail': 'must have all query params: {information_nickname}, {location_name}, {location_type}, {location_state}, {in_date_gt}, {until_date_lte}, {granularity}.'
 		}, status=HTTP_400_BAD_REQUEST)
 
 class InformationView(generics.ListAPIView):
@@ -70,7 +70,7 @@ class LocationView(APIView):
 
 		return Response(response)
 
-class GranularityView(generics.ListAPIView):
+class GranularityView(APIView):
 	def get(self, request, format=None):
 		queryset = Granularity.objects.all()
 
@@ -91,7 +91,6 @@ class GranularityView(generics.ListAPIView):
 				'granularity': granularity.granularity,
 				'granularidade': pt_br
 			})
-		print(response)
 		return Response({"data": response})
 
 class GenerateJsonLocationsView(APIView):

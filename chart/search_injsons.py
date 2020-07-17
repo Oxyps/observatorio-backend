@@ -18,27 +18,21 @@ def pt_br(string):
 		return 'anual'
 
 def search_location_data_injson(information_param, location_name_param, location_type_param, location_state_param, in_date_param, until_date_param, granularity_param):
-	print()
 	with open(path.abspath(f'util/locations/{location_type_param}_{location_name_param}_{location_state_param}.json')) as file:
 		json_file = json.load(file)
 
-	response = {}
-	response_data = []
-	response_until_dates = []
+	response = { 'dataset': [], 'title': '' }
 	for json_data in json_file:
 		if json_data['information_nickname'] != information_param:
 			continue
-
 		if json_data['granularity'] != granularity_param:
 			break
-
 		in_date_param = str(in_date_param).split('-')
 		in_date_json = str(json_data['in_date']).split('-')
 		in_date_param = date(int(in_date_param[0]), int(in_date_param[1]), int(in_date_param[2]))
 		in_date_json = date(int(in_date_json[0]), int(in_date_json[1]), int(in_date_json[2]))
 		if in_date_json <= in_date_param:
 			break
-
 		until_date_param = str(until_date_param).split('-')
 		until_date_json = str(json_data['until_date']).split('-')
 		until_date_param = date(int(until_date_param[0]), int(until_date_param[1]), int(until_date_param[2]))
@@ -46,18 +40,14 @@ def search_location_data_injson(information_param, location_name_param, location
 		if until_date_json > until_date_param:
 			break
 
-		response_data.append(json_data['data'])
-		response_until_dates.append(until_date_json.__str__())
+		response['dataset'].append({
+			'date': until_date_json.__str__(),
+			'data': json_data['data']
+		})
 
-	response['until_dates'] = response_until_dates
-	response['datasets'] = [
-		{
-			'label': f'{information_param} - {location_name_param} {location_type_param} {location_state_param}, período {pt_br(granularity_param)}',
-			'data': response_data
-		}
-	]
-
-	if len(response_data) == 0:
-		response['datasets'][0]['label'] = ''
+	if len(response['dataset']) > 0:
+		title = f'{information_param} - {location_name_param} {location_type_param} {location_state_param}, período {pt_br(granularity_param)}'
+		response['title'] = title.__str__(),
+		# response['title'] = ''
 
 	return response

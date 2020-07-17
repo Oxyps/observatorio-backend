@@ -6,7 +6,7 @@
 env
 venv
 
-database
+core/database
 
-scripts/data_source/data.json
-scripts/new_data
+util/data_source
+util/locations
