@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from .models import Information, Location, Granularity
 from .serializers import InformationSerializer
 
-from .search_injsons import search_location_data_injson
+from .search_injsons import search_location_data_injson, pt_br
 from .generate_jsons import generate_json_locations, get_stateid_by_ibgeid
 
 class SearchDataView(APIView):
@@ -77,20 +77,12 @@ class GranularityView(APIView):
 		response = []
 
 		for granularity in queryset:
-			pt_br = ''
-			if granularity.granularity == 'daily': pt_br = 'diário'
-			elif granularity.granularity == 'weekly': pt_br = 'semanal'
-			elif granularity.granularity == 'monthly': pt_br = 'mensal'
-			elif granularity.granularity == 'bimonthly': pt_br = 'bimestral'
-			elif granularity.granularity == 'quarterly': pt_br = 'trimestral'
-			elif granularity.granularity == 'half-yearly': pt_br = 'semestral'
-			elif granularity.granularity == 'yearly': pt_br = 'anual'
-
 			response.append({
 				'id': granularity.id,
 				'granularity': granularity.granularity,
-				'granularidade': pt_br
+				'granularidade': pt_br(granularity.granularity)
 			})
+
 		return Response({"data": response})
 
 class GenerateJsonLocationsView(APIView):
