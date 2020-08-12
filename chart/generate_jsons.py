@@ -14,7 +14,7 @@ def get_stateid_by_ibgeid(ibgeid):
 	# dont belong to a state
 	return 0
 
-def generate_json_locations():
+def generate_json_files():
 	with open(path.abspath('util/data_source/data.json')) as file:
 		json_source = json.load(file)
 
@@ -42,5 +42,5 @@ def generate_json_locations():
 		new_source[key].append(locations_data)
 
 	for key in new_source:
-		with open(path.abspath(f'util/locations/{key}.json'), 'w') as file:
+		with open(path.abspath(f'util/data_locations/{key}.json'), 'w') as file:
 			json.dump(new_source[key], file, indent=2)

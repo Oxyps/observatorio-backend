@@ -9,4 +9,4 @@ venv
 core/database
 
 util/data_source
-util/locations
+util/data_locations

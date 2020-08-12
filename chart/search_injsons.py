@@ -17,7 +17,7 @@ def pt_br(string):
 	elif string == 'yearly': return 'anual'
 
 def search_location_data_injson(information_param, location_name_param, location_type_param, location_state_param, in_date_param, until_date_param, granularity_param):
-	with open(path.abspath(f'util/locations/{location_type_param}_{location_name_param}_{location_state_param}.json')) as file:
+	with open(path.abspath(f'util/data_locations/{location_type_param}_{location_name_param}_{location_state_param}.json')) as file:
 		json_file = json.load(file)
 
 	response = { 'dataset': [], 'title': '' }

@@ -107,9 +107,8 @@ localhost:8000/chart/search-data/?information_nickname=&location_name=&location_
 ```
 
 - **This route later will need some kind of authentication.** Generate locations JSON files:
-
 ```
-localhost:8000/chart/generate-json-locations/
+localhost:8000/chart/generate-json-files/
 ```
 
 **Util**

@@ -7,7 +7,7 @@ from .models import Information, Location, Granularity
 from .serializers import InformationSerializer
 
 from .search_injsons import search_location_data_injson, pt_br
-from .generate_jsons import generate_json_locations, get_stateid_by_ibgeid
+from .generate_jsons import generate_json_files, get_stateid_by_ibgeid
 
 class SearchDataView(APIView):
 	def get(self, request, format=None):
@@ -85,7 +85,7 @@ class GranularityView(APIView):
 
 		return Response({"data": response})
 
-class GenerateJsonLocationsView(APIView):
+class GenerateJsonFilesView(APIView):
 	def get(self, request, format=None):
-		generate_json_locations()
+		generate_json_files()
 		return Response({'message': 'created json files.'})

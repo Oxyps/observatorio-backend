@@ -1,4 +1,4 @@
-/* select relevant data from chart_data table */
+/* select relevant data from ´Data´ table */
 /* order by information and granularity to generate json files */
 
 SELECT
