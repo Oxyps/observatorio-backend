@@ -26,21 +26,28 @@ def search_location_data_injson(information_param, location_name_param, location
 			continue
 		if json_data['granularity'] != granularity_param:
 			continue
+
 		in_date_param = str(in_date_param).split('-')
-		in_date_json = str(json_data['in_date']).split('-')
 		in_date_param = date(int(in_date_param[0]), int(in_date_param[1]), int(in_date_param[2]))
+		# get rid of time thing (all after T)
+		in_date_json = str(json_data['in_date'].split('T')[0])
+		in_date_json = in_date_json.split('-')
+		print(in_date_json)
 		in_date_json = date(int(in_date_json[0]), int(in_date_json[1]), int(in_date_json[2]))
 		if in_date_json <= in_date_param:
 			continue
+
 		until_date_param = str(until_date_param).split('-')
-		until_date_json = str(json_data['until_date']).split('-')
 		until_date_param = date(int(until_date_param[0]), int(until_date_param[1]), int(until_date_param[2]))
+		# get rid of time thing (all after T)
+		until_date_json = str(json_data['until_date'].split('T')[0])
+		until_date_json = until_date_json.split('-')
 		until_date_json = date(int(until_date_json[0]), int(until_date_json[1]), int(until_date_json[2]))
 		if until_date_json > until_date_param:
 			continue
 
 		response['dataset'].append({
-			'date': until_date_json.__str__(),
+			'date': until_date_json.strftime('%d/%m/%Y'),
 			'data': json_data['data']
 		})
 

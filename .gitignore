@@ -10,3 +10,5 @@ core/database
 
 util/data_source
 util/data_locations
+
+*.log

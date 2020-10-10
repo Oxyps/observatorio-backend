@@ -59,7 +59,6 @@ class Information(models.Model):
 class Data(models.Model):
 	class Meta:
 		db_table = 'data'
-		unique_together = (('information', 'referenceperiod', 'location', 'granularity'),)
 
 	def __str__(self):
 		return f'{self.information} - {self.location} - {self.referenceperiod} - {self.granularity} - {self.data}'

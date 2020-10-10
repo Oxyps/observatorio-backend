@@ -15,7 +15,7 @@ def get_stateid_by_ibgeid(ibgeid):
 	return 0
 
 def generate_json_files():
-	with open(path.abspath('util/data_source/data.json')) as file:
+	with open(path.abspath('util/data_source/data.json'), encoding='utf-8') as file:
 		json_source = json.load(file)
 
 	new_source = {}

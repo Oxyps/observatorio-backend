@@ -34,14 +34,14 @@ class SearchDataView(APIView):
 				return Response(response)
 			except FileNotFoundError:
 				return Response({
-					'detail': f'no data for location_type={{{location_type}}}, location_name={{{location_name}}} and location_state={{{location_state}}}. check names syntax. must exist in the database.'
+					'error': f'no data for location_type={{{location_type}}}, location_name={{{location_name}}} and location_state={{{location_state}}}. check names syntax. must exist in the database.'
 				}, status=HTTP_404_NOT_FOUND)
 			except ValueError:
 				return Response({
-					'detail': f'check in_date={{{in_date}}} and until_date={{{until_date}}} syntax. format: yyyy-mm-dd. {{y}}, {{m}} and {{d}} must be 10 base numbers.'
+					'error': f'check in_date={{{in_date}}} and until_date={{{until_date}}} syntax. format: yyyy-mm-dd. {{y}}, {{m}} and {{d}} must be 10 base numbers.'
 				}, status=HTTP_404_NOT_FOUND)
 		return Response({
-			'detail': 'must have all query params: {information_nickname}, {location_name}, {location_type}, {location_state}, {in_date_gt}, {until_date_lte}, {granularity}.'
+			'error': 'must have all query params: {information_nickname}, {location_name}, {location_type}, {location_state}, {in_date_gt}, {until_date_lte}, {granularity}.'
 		}, status=HTTP_400_BAD_REQUEST)
 
 class InformationView(generics.ListAPIView):
@@ -88,4 +88,4 @@ class GranularityView(APIView):
 class GenerateJsonFilesView(APIView):
 	def get(self, request, format=None):
 		generate_json_files()
-		return Response({'message': 'created json files.'})
+		return Response({'success': 'created json files.'})

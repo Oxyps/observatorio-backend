@@ -64,15 +64,11 @@ CREATE DATABASE observatorio DEFAULT CHARACTER SET utf8mb4;
 > py manage.py migrate
 ```
 
-- Run `scripts/populate_outer_tables.sql` in DB to populate tables around `chart_data` table; It can easily be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/); Make sure to assegurate the UTF-8 unicode;
+- Run `scripts/populate_outer_tables.sql` in DB to populate tables around `Data` table; It can easily be done using [ApexSQL extension for VSCode](https://www.sqlshack.com/visual-studio-code-for-mysql-and-mariadb-development/); Assegurate the UTF-8 unicode;
 
-- **in development:**
-Run `util/scripts/generate_insert_script.py` to generate `util/scripts/populate_data_table.sql`;
+- Run `util/scripts/populate_data_table.sql` in DB to populate `Data` table;
 
-- **in development:**
-Run `util/scripts/populate_data_table.sql` in DB to populate `Data` table;
-
-- With DB populated, a JSON file must be extracted from `Data` table using `util/scripts/extraction_query.sql` extraction query. This file must be named `util/data_source/data.json` and be in the same script's directory. That procedure can also be done using [MySQL-Workbench](https://dev.mysql.com/downloads/workbench/);
+- After DB populated, a JSON file must be extracted from `Data` table using `util/scripts/extraction_query.sql` extraction query. This file must be named `util/data_source/data.json` and be in the same script's directory. That procedure can also be done using [ApexSQL extension for VSCode](https://solutioncenter.apexsql.com/how-to-export-mysql-data-to-json/);
 
 - Run server:
 ``` shell
@@ -103,7 +99,7 @@ localhost:8000/chart/location/
 
 - Filtered data:
 ```
-localhost:8000/chart/search-data/?information_nickname=&location_name=&location_type=&location_state=&granularity=&in_date_gt=&until_date_lte=/
+http://localhost:8000/chart/search-data/?information_nickname=FUNDEB&location_name=Acrelândia&location_type=Município&location_state=AC&granularity=bimonthly&in_date_gt=2015-01-01&until_date_lte=2018-01-01
 ```
 
 - **This route later will need some kind of authentication.** Generate locations JSON files:

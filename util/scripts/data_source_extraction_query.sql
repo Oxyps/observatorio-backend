@@ -1,5 +1,5 @@
 /* select relevant data from ´Data´ table */
-/* order by information and granularity to generate json files */
+/* order by information, location and granularity to generate json files */
 
 SELECT
     i.nickname AS "information_nickname",
@@ -14,4 +14,4 @@ FROM
     JOIN referenceperiod r ON d.id_referenceperiod=r.id
     JOIN information i ON d.id_information=i.id
     JOIN datatype t ON i.id_datatype=t.id
-ORDER BY 1, 3, 6;
+ORDER BY 1, 3, 6, 7;
