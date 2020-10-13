@@ -99,7 +99,7 @@ localhost:8000/chart/location/
 
 - Filtered data:
 ```
-http://localhost:8000/chart/search-data/?information_nickname=FUNDEB&location_name=Acrelândia&location_type=Município&location_state=AC&granularity=bimonthly&in_date_gt=2015-01-01&until_date_lte=2018-01-01
+http://localhost:8000/chart/search-data/?information_nickname=FUNDEB&location_name=Acrelândia&location_type=Município&location_state=AC&granularity=bimonthly&in_date_gt=2007-01-01&until_date_lte=2019-12-31
 ```
 
 - **This route later will need some kind of authentication.** Generate locations JSON files:

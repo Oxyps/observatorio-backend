@@ -32,9 +32,11 @@ def search_location_data_injson(information_param, location_name_param, location
 		# get rid of time thing (all after T)
 		in_date_json = str(json_data['in_date'].split('T')[0])
 		in_date_json = in_date_json.split('-')
-		print(in_date_json)
 		in_date_json = date(int(in_date_json[0]), int(in_date_json[1]), int(in_date_json[2]))
-		if in_date_json <= in_date_param:
+		print(in_date_json, in_date_json <= in_date_param)
+
+		# choose this data if this json date is greater than or equal to param
+		if in_date_json < in_date_param:
 			continue
 
 		until_date_param = str(until_date_param).split('-')
@@ -43,6 +45,8 @@ def search_location_data_injson(information_param, location_name_param, location
 		until_date_json = str(json_data['until_date'].split('T')[0])
 		until_date_json = until_date_json.split('-')
 		until_date_json = date(int(until_date_json[0]), int(until_date_json[1]), int(until_date_json[2]))
+
+		# choose this data if this json date is lower than or equal to param
 		if until_date_json > until_date_param:
 			continue
 
